@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
 	<title></title>
 	<style type="text/css">
 		span{
@@ -16,10 +16,84 @@
 			margin: 0;
 		}
 	</style>
+	<script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "black",
+        y = 2;
+    
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+    
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = 'white';
+        //ctx.strokeStyle = x;
+        //ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+    </script>
+
 </head>
-<body>
+<body  onload="init()">
 <img src="mapforsuccess.png" style="width: 1215px;">
-<!-- size : 1215x1518 -->
+
 <div style='position: absolute;z-index: 999;left: 287px;top: 194px;'>
 	<input type="text" style='border: none; opacity: 0.5;'  size="3">
 </div>
@@ -97,7 +171,6 @@
 <div style='position: absolute;z-index: 999;left: 989px;top: 1339px;'>
 	<input type="text" style='border: none; opacity: 0.5;'  size="3">
 </div>
-<!-- tuoi -->
 <div style='position: absolute;z-index: 999;left: 292px;top: 1430px;'>
 	<input type="text" style='border: none; opacity: 0.5;'  size="10">
 </div>
@@ -110,20 +183,26 @@
 <div style='position: absolute;z-index: 999;left: 951px;top: 1430px;'>
 	<input type="text" style='border: none; opacity: 0.5;'  size="10">
 </div>
+<!-- 4 -->
+<div>
+	<canvas id="can" width="400" height="400" style="position:absolute;top:14px;left:15px;border:2px solid;"></canvas>
+</div>
+<div>
+	<button id="print" onclick="print()">Print</button>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function print()
+		{
+			$.each($('input'), function() {
+				let text = $(this).val();
+				$(this).parent().append(`<span>${text}</span>`);
+				$(this).remove();
+			});
+			$("#print").remove();
+		}
+	</script>
+	
+</div>
 
-<br>
-<button id="print" onclick="print()">Print</button>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-	function print()
-	{
-		$.each($('input'), function() {
-			let text = $(this).val();
-			$(this).parent().append(`<span>${text}</span>`);
-			$(this).remove();
-		});
-		$("#print").remove();
-	}
-</script>
 </body>
 </html>
