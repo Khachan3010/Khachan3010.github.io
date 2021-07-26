@@ -5,189 +5,127 @@
 	<meta name="viewport" content= "width=device-width, initial-scale=1.0">
 	<title></title>
 	<style type="text/css">
-		span{
-			color: #FFE1CF;
-			font-family: Montserrat;
-			font-weight: 500;
-			font-size: 27px;
+	span{
+		color: #FFE1CF;
+		font-family: Montserrat;
+		font-weight: 500;
+		font-size: 27px;
 
-		}
-		body{
-			margin: 0;
-		}
-	</style>
-	<script type="text/javascript">
-    var canvas, ctx, flag = false,
-        prevX = 0,
-        currX = 0,
-        prevY = 0,
-        currY = 0,
-        dot_flag = false;
-
-    var x = "black",
-        y = 2;
-    
-    function init() {
-        canvas = document.getElementById('can');
-        ctx = canvas.getContext("2d");
-        w = canvas.width;
-        h = canvas.height;
-    
-        canvas.addEventListener("mousemove", function (e) {
-            findxy('move', e)
-        }, false);
-        canvas.addEventListener("mousedown", function (e) {
-            findxy('down', e)
-        }, false);
-        canvas.addEventListener("mouseup", function (e) {
-            findxy('up', e)
-        }, false);
-        canvas.addEventListener("mouseout", function (e) {
-            findxy('out', e)
-        }, false);
-    }
-    function draw() {
-        ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(currX, currY);
-        ctx.lineWidth = 3;
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = 'white';
-        //ctx.strokeStyle = x;
-        //ctx.lineWidth = y;
-        ctx.stroke();
-        ctx.closePath();
-    }
-    function findxy(res, e) {
-        if (res == 'down') {
-            prevX = currX;
-            prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
-    
-            flag = true;
-            dot_flag = true;
-            if (dot_flag) {
-                ctx.beginPath();
-                ctx.fillStyle = x;
-                ctx.fillRect(currX, currY, 2, 2);
-                ctx.closePath();
-                dot_flag = false;
-            }
-        }
-        if (res == 'up' || res == "out") {
-            flag = false;
-        }
-        if (res == 'move') {
-            if (flag) {
-                prevX = currX;
-                prevY = currY;
-                currX = e.clientX - canvas.offsetLeft;
-                currY = e.clientY - canvas.offsetTop;
-                draw();
-            }
-        }
-    }
-    </script>
+	}
+	body{
+		margin: 0;
+	}
+</style>
 
 </head>
-<body  onload="init()">
-<img src="mapforsuccess.png" style="width: 1215px;">
+<body>
+	<img src="mapforsuccess.png" style="width: 1215px;">
 
-<div style='position: absolute;z-index: 999;left: 287px;top: 194px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 287px;top: 386px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 724px;top: 198px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 1057px;top: 204px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 883px;top: 305px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 892px;top: 476px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 146px;top: 496px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 434px;top: 496px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<!-- 2 -->
-<div style='position: absolute;z-index: 999;left: 168px;top: 653px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 283px;top: 722px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 380px;top: 797px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 462px;top: 841px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 538px;top: 798px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 663px;top: 738px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 766px;top: 834px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 830px;top: 757px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<div style='position: absolute;z-index: 999;left: 954px;top: 654px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="6">
-</div>
-<!-- 3 -->
-<div style='position: absolute;z-index: 999;left: 323px;top: 1229px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 526px;top: 1211px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 744px;top: 1190px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 989px;top: 1166px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 323px;top: 1339px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 526px;top: 1339px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 744px;top: 1339px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 989px;top: 1339px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="3">
-</div>
-<div style='position: absolute;z-index: 999;left: 292px;top: 1430px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="10">
-</div>
-<div style='position: absolute;z-index: 999;left: 487px;top: 1430px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="10">
-</div>
-<div style='position: absolute;z-index: 999;left: 706px;top: 1430px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="10">
-</div>
-<div style='position: absolute;z-index: 999;left: 951px;top: 1430px;'>
-	<input type="text" style='border: none; opacity: 0.5;'  size="10">
-</div>
-<!-- 4 -->
-<div>
-	<canvas id="can" width="400" height="400" style="position:absolute;top:14px;left:15px;border:2px solid;"></canvas>
-</div>
-<div>
+	<div style='position: absolute;z-index: 999;left: 287px;top: 194px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 287px;top: 386px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 724px;top: 198px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 1057px;top: 204px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 883px;top: 305px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 892px;top: 476px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 146px;top: 496px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 434px;top: 496px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<!-- 2 -->
+	<div style='position: absolute;z-index: 999;left: 168px;top: 653px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 283px;top: 722px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 380px;top: 797px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 462px;top: 841px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 538px;top: 798px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 663px;top: 738px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 766px;top: 834px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 830px;top: 757px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 954px;top: 654px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="6">
+	</div>
+	<!-- 3 -->
+	<div style='position: absolute;z-index: 999;left: 323px;top: 1229px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 526px;top: 1211px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 744px;top: 1190px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 989px;top: 1166px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 323px;top: 1339px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 526px;top: 1339px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 744px;top: 1339px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 989px;top: 1339px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="3">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 292px;top: 1430px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="10">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 487px;top: 1430px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="10">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 706px;top: 1430px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="10">
+	</div>
+	<div style='position: absolute;z-index: 999;left: 951px;top: 1430px;'>
+		<input type="text" style='border: none; opacity: 0.5;'  size="10">
+	</div>
+	<!-- 4 -->
+	<div >
+		<link rel="stylesheet" type="text/css" href="connect_dot.css">
+		<div id="main_content_wrap" class="outer">
+			<section id="main_content" class="inner">
+				<div id="main" role="main" class="clearfix">
+					<div id="canvas"  style='position: absolute;z-index: 999;left: 402px;top: 1667px;width: 387px;height: 387px;'>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="connect_dot.js"></script>
+	</div>
+
+
 	<button id="print" onclick="print()">Print</button>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -201,8 +139,5 @@
 			$("#print").remove();
 		}
 	</script>
-	
-</div>
-
 </body>
 </html>
